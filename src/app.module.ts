@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { OrdersService } from './orders/orders.service';
 import { Order } from './orders/entities/order.entity';
 import configuration from './config/configuration';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -26,7 +26,9 @@ import configuration from './config/configuration';
       inject: [ConfigService],
     }),
     TypeOrmModule.forFeature([Order]),
+    OrdersModule
   ],
-  providers: [OrdersService],
+  providers: [],
+  controllers: []
 })
 export class AppModule {}
